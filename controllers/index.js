@@ -1,6 +1,15 @@
 const router = require("express").Router();
 const apiRoutes = require("./api");
 
+const test = {
+  greeting: "Hello World!",
+  response: "Hi back!",
+};
+
+router.get("/", async (req, res) => {
+  res.render("hello world");
+});
+
 router.use("/api", apiRoutes);
 
 router.use((req, res) => {
