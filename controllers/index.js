@@ -7,7 +7,7 @@ const test = {
 };
 
 router.get("/", async (req, res) => {
-  res.render("hello world");
+  res.render("all", test);
 });
 
 router.use("/api", apiRoutes);

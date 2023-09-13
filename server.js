@@ -6,14 +6,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const sequelize = require("./config/connection");
 
-app.engine("handlbars", hbs.engine);
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(require("./controllers/api"));
+app.use(require("./controllers/index"));
 
 sequelize.sync().then(() => {
   app.listen(PORT, () => {
