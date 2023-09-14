@@ -12,7 +12,11 @@ BlogPost.init(
       type: DataTypes.STRING,
     },
     blog_author: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
   },
   {

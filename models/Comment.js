@@ -6,7 +6,11 @@ class Comment extends Model {}
 Comment.init(
   {
     comment_author: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
     comment_description: {
       type: DataTypes.STRING,
