@@ -55,9 +55,12 @@ router.post("/login", async (req, res) => {
       return;
     }
 
+    const getUser = await dbUserData.get({ plain: true });
+    console.log(getUser.id);
+
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      req.session.userId = dbUserData.id;
       res
         .status(200)
         .json({ user: dbUserData, message: "You are now logged in!" });
@@ -66,6 +69,15 @@ router.post("/login", async (req, res) => {
     console.log(error);
     res.status(500).json(error);
   }
+});
+
+// get the current user
+router.get("/current-user", async (req, res) => {
+  const getThisUser = await User.findByPk(req.session.userId);
+
+  const thisUser = await getThisUser.get({ plain: true });
+
+  res.json(thisUser);
 });
 
 router.post("/logout", withAuth, (req, res) => {

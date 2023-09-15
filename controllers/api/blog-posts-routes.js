@@ -5,7 +5,7 @@ const withAuth = require("../../utils/auth");
 router.get("/", async (req, res) => {
   try {
     const allBlogPosts = await BlogPost.findAll({
-      include: [{ model: Comment }, { model: User }],
+      include: [{ model: Comment, include: { model: User } }, { model: User }],
     });
     res.status(200).json(allBlogPosts);
   } catch (err) {
@@ -15,15 +15,21 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", withAuth, async (req, res) => {
   try {
-    const thisBlogPost = await BlogPost.findByPk(req.params.id, {
-      include: [{ model: Comment }],
+    const getBlogPost = await BlogPost.findByPk(req.params.id, {
+      include: [{ model: Comment, include: { model: User } }, { model: User }],
     });
 
-    if (!thisBlogPost) {
+    if (!getBlogPost) {
       res.status(404).json(`No Blogpost found`);
       return;
     }
-    res.status(200).json(thisBlogPost);
+
+    const thisBlogPost = await getBlogPost.get({ plain: true });
+
+    res.render("blogpost", {
+      thisBlogPost,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -83,6 +89,27 @@ router.delete("/:id", async (req, res) => {
   if (!thisBlogPost) {
     res.status(404).json(`No Blogpost found with this ID`);
     return;
+  }
+});
+
+// adds a comment to a blog
+router.post("/:id/add-comment", async (req, res) => {
+  console.log(req.body.thisUser.id);
+  const getThisUser = await User.findByPk(req.session.userId);
+
+  const thisUser = await getThisUser.get({ plain: true });
+
+  console.log(thisUser);
+  try {
+    const newComment = await Comment.create({
+      comment_author: thisUser.id,
+      comment_description: req.body.comment_description,
+      blog_id: req.params.id,
+    });
+
+    res.status(200).json(newComment);
+  } catch (error) {
+    res.status(500).json(error);
   }
 });
 

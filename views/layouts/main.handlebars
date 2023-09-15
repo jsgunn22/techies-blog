@@ -13,7 +13,7 @@
         <h3><a href="/">Home</a></h3>
         <h3><a href="">Dashboard</a></h3>
         {{#if loggedIn}}
-          <h3 id="logout"><a href="/logout">Log Out</a></h3>
+          <h3 id="logout">Log Out</h3>
         {{else}}
           <h3><a href="/login">Log In</a></h3>
         {{/if}}
@@ -22,7 +22,7 @@
     </nav>
     {{{body}}}
     {{#if loggedIn}}
-      <script src="./js/logout.js"></script>
+      <script src="/js/logout.js"></script>
     {{/if}}
   </body>
 </html>
