@@ -10,12 +10,19 @@
     <nav>
       <h1>Techies' Blog</h1>
       <div id="nav-links">
-        <h3><a href="http://localhost:3000/api/blogpost/">Home</a></h3>
+        <h3><a href="http://localhost:3000/">Home</a></h3>
         <h3><a href="">Dashboard</a></h3>
-        <h3><a href="">Login</a></h3>
+        {{#if loggedIn}}
+          <h3 id="logout"><a href="http://localhost:3000/api/logout/">Log Out</a></h3>
+        {{else}}
+          <h3><a href="http://localhost:3000/login/">Log In</a></h3>
+        {{/if}}
       </div>
 
     </nav>
     {{{body}}}
+    {{#if loggedIn}}
+      <script src="./js/logout.js"></script>
+    {{/if}}
   </body>
 </html>
