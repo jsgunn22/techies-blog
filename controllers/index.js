@@ -7,7 +7,10 @@ const test = {
 };
 
 router.get("/", async (req, res) => {
-  res.render("dashboard", test);
+  res.render("dashboard", {
+    test,
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 router.use("/api", apiRoutes);
