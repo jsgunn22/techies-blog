@@ -13,22 +13,20 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    console.log("test");
     const newUser = await User.create({
       user_name: req.body.user_name,
       email: req.body.email,
       password: req.body.password,
     });
 
-    const thisNewUser = await User.findOne({
-      where: {
-        email: req.body.email,
-      },
-    });
-
     req.session.save(() => {
       req.session.loggedIn = true;
+
+      res
+        .status(200)
+        .json({ user: newUser, message: "You are now logged in!" });
     });
-    res.status(200).json(thisNewUser);
   } catch (error) {
     res.status(500).json(error);
   }

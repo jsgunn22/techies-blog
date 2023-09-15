@@ -1,9 +1,4 @@
-{{#if loggedIn}}
+
   {{#each blogPosts as |blog|}}
  {{> blogpost-preview}}
   {{/each}}
-{{else}}
-  <h1>You need to log in</h1>
-  <button id="navbar-login">Login</button>
-  <script src="./js/login.js"></script>
-{{/if}}
