@@ -292,6 +292,7 @@ button {
   transform: translateX(-50%);
   margin-bottom: 24px;
   display: flex;
+  width: 768px;
 
   & #home-header-font-stack {
     margin-right: auto;
@@ -303,13 +304,51 @@ button {
   margin-left: 50%;
   transform: translateX(-50%);
 
-  & h1 {
-    text-align: center;
+  & #dashboard-font-stack {
+    display: flex;
+    width: 768px;
     margin-bottom: 24px;
   }
 
-  & button {
-    margin-left: 50%;
-    transform: translateX(-50%);
+  & h1 {
+    margin-right: auto;
+  }
+}
+
+#blur {
+  color: transparent;
+  text-shadow: 0 0 3px #000;
+}
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#my-blog-actions {
+  display: flex;
+  margin-top: 16px;
+
+  & a {
+    text-decoration: none;
+    margin-right: 24px;
+  }
+
+  & #update-blog {
+    color: var(--primary-500);
+
+    &:hover {
+      color: var(--primary-900);
+    }
+  }
+
+  & #delete-blog {
+    color: var(--danger-500);
+
+    &:hover {
+      color: var(--danger-900);
+    }
   }
 }

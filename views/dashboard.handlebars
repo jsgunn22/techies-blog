@@ -1,6 +1,11 @@
 <div id="dashboard-body">
     {{#if loggedIn}}
-        <h1>Your Blog Posts</h1>
+        <div id="dashboard-font-stack">
+            <h1>Your Blog Posts</h1>
+            <a href="/create-new">
+            <button type="submit" >Create New Blog</button>
+        </a>
+        </div>
         {{#each blogPosts as |blog|}}
             {{> blogpost-preview}}
         {{/each}}

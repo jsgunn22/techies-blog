@@ -7,7 +7,7 @@
       {{format_date createdAt}}</p>
   </div>
   <div class="card-body">
-    <p>{{blog_description}}</p>
+    <p class="truncate">{{blog_description}}</p>
     <div class="blog-preview-bottom">
       <a href="/api/blogpost/{{id}}"><h4 class="view-blog-link">View Blog</h4></a>
       <p>Comments: {{comments.length}}</p>
