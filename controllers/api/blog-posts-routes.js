@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { BlogPost, Comment, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+// gets all blog posts
 router.get("/", async (req, res) => {
   try {
     const allBlogPosts = await BlogPost.findAll({
@@ -13,6 +14,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// gets a blog post by id if the user is logged in
 router.get("/:id", withAuth, async (req, res) => {
   try {
     const getBlogPost = await BlogPost.findByPk(req.params.id, {
@@ -35,6 +37,7 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
+//create new blog post
 router.post("/", async (req, res) => {
   try {
     const newBlog = await BlogPost.create({
@@ -49,7 +52,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+// updates a blog post by id
+router.put("/update/:id", async (req, res) => {
   try {
     const thisBlogPost = BlogPost.findByPk(req.params.id);
 
@@ -62,7 +66,6 @@ router.put("/:id", async (req, res) => {
       {
         blog_title: req.body.blog_title,
         blog_description: req.body.blog_description,
-        blog_author: req.body.blog_author,
       },
       {
         where: {
@@ -70,12 +73,14 @@ router.put("/:id", async (req, res) => {
         },
       }
     );
+    res.status(200).json("update successful");
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
-router.delete("/:id", async (req, res) => {
+// deletes a blog post by id
+router.delete("/:id", withAuth, async (req, res) => {
   const thisBlogPost = BlogPost.findByPk(req.params.id);
 
   try {
@@ -84,6 +89,8 @@ router.delete("/:id", async (req, res) => {
         id: req.params.id,
       },
     });
+
+    res.status(200).json("Successfully deleted blogpost");
   } catch (err) {
     res.status(500).json(err);
   }

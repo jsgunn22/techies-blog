@@ -352,3 +352,20 @@ button {
     }
   }
 }
+
+#update-btn-div {
+  display: flex;
+  width: 100%;
+
+  & #cancel-update {
+    background-color: var(--neutral-000);
+    color: var(--danger-500);
+    margin-left: 0;
+    margin-right: auto;
+
+    &:hover {
+      color: var(--danger-900);
+      background-color: var(--opacity-danger);
+    }
+  }
+}

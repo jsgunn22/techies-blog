@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Update Blog Post</h3>
+  </div>
+  <div class="card-body">
+    <div class="input-div">
+      <label for="blog-title">Blog title</label>
+      <input type="text" name="blog-title" id="blog-title" value="{{thisBlogPost.blog_title}}"></input>
+    </div>
+    <div class="input-div">
+      <label for="blog-form">Type your thoughts here</label>
+      <textarea type="text" name="blog-form" id="blog-form">{{thisBlogPost.blog_description}}</textarea>
+    </div>
+    <div id="update-btn-div">
+        <a href="/api/blogpost/{{thisBlogPost.id}}">
+        <button id="cancel-update">Cancel</button>
+        </a>
+    <button id="save-update">Save Changes</button>
+    </div>
+  </div>
+</div>
+<script src="/js/update.js"></script>

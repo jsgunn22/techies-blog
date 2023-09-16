@@ -36,6 +36,15 @@ router.get("/create-new", (req, res) => {
   res.render("create-blog");
 });
 
+router.get("/update/:id", withAuth, async (req, res) => {
+  const getThisBlog = await BlogPost.findByPk(req.params.id);
+
+  const thisBlogPost = await getThisBlog.get({ plain: true });
+
+  console.log(thisBlogPost);
+  res.render("update", { thisBlogPost });
+});
+
 router.get("/login", async (req, res) => {
   res.render("login");
 });
