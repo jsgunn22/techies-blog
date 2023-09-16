@@ -8,10 +8,19 @@ router.get("/", async (req, res) => {
   }).catch((err) => res.json(err));
 
   const blogPosts = getAllBlogPosts.map((blog) => blog.get({ plain: true }));
+
+  // blogPosts.reverse();
+
   res.render("home", {
     blogPosts,
     loggedIn: req.session.loggedIn,
   });
+});
+
+// render the create blog post page
+router.get("/create-new", (req, res) => {
+  console.log("rendering create");
+  res.render("create-blog");
 });
 
 router.get("/login", async (req, res) => {

@@ -35,14 +35,15 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    BlogPost.create({
+    const newBlog = await BlogPost.create({
       blog_title: req.body.blog_title,
       blog_description: req.body.blog_description,
-      blog_author: req.body.blog_author,
+      blog_author: req.session.userId,
     });
-    res.status(200).json(`Successfully created Blog Post`);
+
+    res.status(200).json(newBlog);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -98,8 +99,6 @@ router.post("/:id/add-comment", async (req, res) => {
   const getThisUser = await User.findByPk(req.session.userId);
 
   // const thisUser = await getThisUser.get({ plain: true });
-
-  console.log(getThisUser);
   try {
     const newComment = await Comment.create({
       comment_author: getThisUser.id,

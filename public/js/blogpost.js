@@ -1,3 +1,4 @@
+// for adding a comment to a blog post
 const submitButton = document.querySelector("#save-comment");
 
 const saveComment = async () => {

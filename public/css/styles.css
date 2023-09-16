@@ -292,4 +292,8 @@ button {
   transform: translateX(-50%);
   margin-bottom: 24px;
   display: flex;
+
+  & #home-header-font-stack {
+    margin-right: auto;
+  }
 }
