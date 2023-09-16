@@ -1,0 +1,11 @@
+<div id="dashboard-body">
+    {{#if loggedIn}}
+        <h1>Your Blog Posts</h1>
+        {{#each blogPosts as |blog|}}
+            {{> blogpost-preview}}
+        {{/each}}
+    {{else}}
+        <h1>Please log in to view your blog posts</h1>
+        <a href="/login"><button>Login</button></a>
+     {{/if}}
+</div>

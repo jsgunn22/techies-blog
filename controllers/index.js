@@ -17,9 +17,22 @@ router.get("/", async (req, res) => {
   });
 });
 
+router.get("/dashboard", async (req, res) => {
+  
+  const getMyBlogs = await BlogPost.findAll({
+    include: [{ model: User }, { model: Comment }],
+    where: {
+      blog_author: req.session.userId,
+    },
+  });
+
+  const blogPosts = await getMyBlogs.map((blog) => blog.get({ plain: true }));
+
+  res.render("dashboard", { blogPosts, loggedIn: req.session.loggedIn });
+});
+
 // render the create blog post page
 router.get("/create-new", (req, res) => {
-  console.log("rendering create");
   res.render("create-blog");
 });
 

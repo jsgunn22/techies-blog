@@ -229,7 +229,7 @@ button {
 .card {
   background-color: var(--neutral-000);
   margin-bottom: 8px;
-  max-width: 768px;
+  width: 768px;
   margin-left: 50%;
   transform: translateX(-50%);
   box-shadow: var(--card-shadow);
@@ -295,5 +295,21 @@ button {
 
   & #home-header-font-stack {
     margin-right: auto;
+  }
+}
+
+#dashboard-body {
+  width: 768px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+
+  & h1 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  & button {
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
 }
