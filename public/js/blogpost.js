@@ -8,17 +8,10 @@ const saveComment = async () => {
     // gets the current location of the window
     const thisBlogLocation = document.location.pathname;
 
-    // gets the current users information to store in the comment
-    const getThisUser = await fetch("/api/users/current-user", {
-      method: "GET",
-    });
-
-    const thisUser = await getThisUser.json();
-
     // saves comments to this blog
     const addComment = await fetch(`${thisBlogLocation}/add-comment`, {
       method: "POST",
-      body: JSON.stringify({ thisUser, comment_description }),
+      body: JSON.stringify({ comment_description }),
       headers: { "Content-Type": "application/json" },
     });
 

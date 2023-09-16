@@ -94,15 +94,15 @@ router.delete("/:id", async (req, res) => {
 
 // adds a comment to a blog
 router.post("/:id/add-comment", async (req, res) => {
-  console.log(req.body.thisUser.id);
+  // console.log(req.body.thisUser.id);
   const getThisUser = await User.findByPk(req.session.userId);
 
-  const thisUser = await getThisUser.get({ plain: true });
+  // const thisUser = await getThisUser.get({ plain: true });
 
-  console.log(thisUser);
+  console.log(getThisUser);
   try {
     const newComment = await Comment.create({
-      comment_author: thisUser.id,
+      comment_author: getThisUser.id,
       comment_description: req.body.comment_description,
       blog_id: req.params.id,
     });
