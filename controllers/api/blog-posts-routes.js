@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
     const allBlogPosts = await BlogPost.findAll({
       include: [{ model: Comment, include: { model: User } }, { model: User }],
     });
+
     res.status(200).json(allBlogPosts);
   } catch (err) {
     res.status(500).json(err);

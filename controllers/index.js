@@ -10,9 +10,14 @@ router.get("/", async (req, res) => {
 
   const blogPosts = getAllBlogPosts.map((blog) => blog.get({ plain: true }));
 
+  let test = blogPosts.length == 0 ? false : true;
+
+  console.log(test);
+
   res.render("home", {
     blogPosts,
     loggedIn: req.session.loggedIn,
+    isBlogs: blogPosts.length == 0 ? false : true,
   });
 });
 
@@ -25,20 +30,12 @@ router.get("/dashboard", withAuth, async (req, res) => {
     },
   });
 
-  let myHistory;
-
-  if (getMyBlogs) {
-    myHistory = true;
-  } else {
-    myHistory = false;
-  }
-
   const blogPosts = await getMyBlogs.map((blog) => blog.get({ plain: true }));
 
   res.render("dashboard", {
     blogPosts,
     loggedIn: req.session.loggedIn,
-    myHistory,
+    isBlogs: blogPosts.length == 0 ? false : true,
   });
 });
 
@@ -52,7 +49,6 @@ router.get("/update/:id", withAuth, async (req, res) => {
 
   const thisBlogPost = await getThisBlog.get({ plain: true });
 
-  console.log(thisBlogPost);
   res.render("update", { thisBlogPost });
 });
 

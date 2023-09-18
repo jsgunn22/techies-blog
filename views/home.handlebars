@@ -11,6 +11,14 @@
     </div>  
     {{/if}}
 </div>
+{{#if isBlogs}}
   {{#each blogPosts as |blog|}}
  {{> blogpost-preview}}
   {{/each}}
+{{else}}
+        <div id="empty-state-div">
+            <img id="empty-illy" src="/images/blog-empty-state.svg" alt="">
+            <h2>Looks like you dont have any blogs</h2>
+            <p class="large-text">Visit My Dashboard to create the first!</p>
+        </div>
+{{/if}}

@@ -369,3 +369,29 @@ button {
     }
   }
 }
+
+#empty-state-div {
+  margin-top: 40px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+
+  & #empty-illy {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 24px;
+  }
+
+  & h2 {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--neutral-600);
+    width: 100%;
+  }
+
+  & p {
+    text-align: center;
+    color: var(--neutral-600);
+  }
+}
