@@ -21,7 +21,7 @@ const saveComment = async () => {
     if (addComment.ok) {
       document.location.reload(thisBlogLocation);
     } else {
-      alert("Failed to Create User");
+      alert("Failed to Save Comment");
     }
   }
 };

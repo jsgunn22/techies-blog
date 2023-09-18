@@ -89,6 +89,7 @@ router.delete("/:id", withAuth, async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include: [{ model: Comment }],
     });
 
     res.status(200).json("Successfully deleted blogpost");
@@ -106,7 +107,7 @@ router.post("/:id/add-comment", async (req, res) => {
   // const thisUser = await getThisUser.get({ plain: true });
   try {
     const newComment = await Comment.create({
-      comment_author: getThisUser.id,
+      comment_author: req.session.userId,
       comment_description: req.body.comment_description,
       blog_id: req.params.id,
     });

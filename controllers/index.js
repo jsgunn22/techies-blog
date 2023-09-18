@@ -10,14 +10,13 @@ router.get("/", async (req, res) => {
 
   const blogPosts = getAllBlogPosts.map((blog) => blog.get({ plain: true }));
 
-  // blogPosts.reverse();
-
   res.render("home", {
     blogPosts,
     loggedIn: req.session.loggedIn,
   });
 });
 
+// my dashboard - renders all of current session users blogs
 router.get("/dashboard", withAuth, async (req, res) => {
   const getMyBlogs = await BlogPost.findAll({
     include: [{ model: User }, { model: Comment }],
@@ -26,9 +25,23 @@ router.get("/dashboard", withAuth, async (req, res) => {
     },
   });
 
+  console.log(getMyBlogs);
+
+  let myHistory;
+
+  if (getMyBlogs) {
+    myHistory = true;
+  } else {
+    myHistory = false;
+  }
+
   const blogPosts = await getMyBlogs.map((blog) => blog.get({ plain: true }));
 
-  res.render("dashboard", { blogPosts, loggedIn: req.session.loggedIn });
+  res.render("dashboard", {
+    blogPosts,
+    loggedIn: req.session.loggedIn,
+    myHistory,
+  });
 });
 
 // render the create blog post page

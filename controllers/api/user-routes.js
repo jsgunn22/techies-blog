@@ -51,6 +51,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Checks users credentials and sets session
 router.post("/login", async (req, res) => {
   try {
     const dbUserData = await User.findOne({
