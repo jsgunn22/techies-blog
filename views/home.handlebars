@@ -18,7 +18,9 @@
 {{else}}
         <div id="empty-state-div">
             <img id="empty-illy" src="/images/blog-empty-state.svg" alt="">
-            <h2>Looks like you dont have any blogs</h2>
-            <p class="large-text">Visit My Dashboard to create the first!</p>
+            <h2>Looks like no blogs have been created yet</h2>
+            <p class="large-text">{{#if loggedIn}}Visit My Dashboard to create the first!
+              {{else}}Log in and visit My Dashboard to create the first!
+              {{/if}}</p>
         </div>
 {{/if}}

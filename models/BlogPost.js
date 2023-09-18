@@ -9,7 +9,7 @@ BlogPost.init(
       type: DataTypes.STRING,
     },
     blog_description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     blog_author: {
       type: DataTypes.INTEGER,

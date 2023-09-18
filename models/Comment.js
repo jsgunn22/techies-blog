@@ -13,7 +13,7 @@ Comment.init(
       },
     },
     comment_description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     blog_id: {
       type: DataTypes.INTEGER,
