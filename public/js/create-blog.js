@@ -1,9 +1,11 @@
 const saveBlogBtn = document.querySelector("#save-blog");
 
 const createBlog = async () => {
+  // gets values from the DOM
   const blog_title = document.querySelector("#blog-title").value.trim();
   const blog_description = document.querySelector("#blog-form").value.trim();
 
+  //Checks to see if both forms are filled
   if (blog_title && blog_description) {
     const thisBlog = await fetch("api/blogpost/", {
       method: "POST",

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Comment, User } = require("../../models");
 
+// gets all comments.  Used for testing
 router.get("/", async (req, res) => {
   try {
     const thisComment = await Comment.findAll({ include: [{ model: User }] });

@@ -1,9 +1,12 @@
+// used to log the user in
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
+  // gets user input from the DOM
   const email = document.querySelector("#login-email").value.trim();
   const password = document.querySelector("#login-password").value.trim();
 
+  // Checks to make sure both forms have a value
   if (email && password) {
     const response = await fetch("/api/users/login", {
       method: "POST",
@@ -19,13 +22,16 @@ const loginFormHandler = async (event) => {
   }
 };
 
+// for new users
 const signUpFormHandler = async (event) => {
   event.preventDefault();
 
+  // gets the values from the DOM
   const user_name = document.querySelector("#sign-up-name").value.trim();
   const email = document.querySelector("#sign-up-email").value.trim();
   const password = document.querySelector("#sign-up-password").value.trim();
 
+  // Checks to makes sure values are present
   if (user_name && email && password) {
     const newUser = await fetch("/api/users", {
       method: "POST",
@@ -41,6 +47,7 @@ const signUpFormHandler = async (event) => {
   }
 };
 
+//event listeners
 document
   .querySelector("#login-button")
   .addEventListener("click", loginFormHandler);

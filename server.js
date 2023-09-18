@@ -1,3 +1,4 @@
+// collects dependencies
 const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
@@ -9,6 +10,7 @@ const helpers = require("./utils/helpers");
 const hbs = exphbs.create({ helpers });
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
+// session settings
 const sess = {
   secret: "Super secret secret",
   cookie: {
@@ -35,6 +37,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(require("./controllers/index"));
 
+// syncs the data base. Alter: true allows tables to be updated upon change.
 sequelize.sync({ alter: true }).then(() => {
   app.listen(PORT, () => {
     console.log(`App is listening on port ${PORT}!`);

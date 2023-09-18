@@ -14,21 +14,6 @@ router.get("/", async (req, res) => {
 
 // creates new user account
 router.post("/", async (req, res) => {
-  // checks the see if the email is already used
-  // const checkForEmail = await User.findOne({
-  //   where: { email: req.body.email },
-  // });
-  // // checks to see if the user name is already used
-  // const checkUserName = await User.findOne({
-  //   where: { user_name: req.body.user_name },
-  // });
-  // // alerts the user if so
-  // if (checkForEmail) {
-  //   res.status(405).json("An account already exists with that email");
-  // } else if (checkUserName) {
-  //   res.status(405).json("An account already exists with that user name");
-  // }
-
   try {
     const newUser = await User.create({
       user_name: req.body.user_name,
@@ -87,6 +72,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// used to log the user out
 router.post("/logout", withAuth, (req, res) => {
   // When the user logs out, destroy the session
   req.session.destroy(() => {

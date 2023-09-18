@@ -1,5 +1,6 @@
 const saveBtn = document.querySelector("#save-update");
 
+// saves changes to a specific blog post and re renders the page
 const saveChanges = async () => {
   const thisBlogRoute = document.location.pathname;
   const blog_title = document.querySelector("#blog-title").value.trim();

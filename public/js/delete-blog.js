@@ -3,7 +3,7 @@ const deleteButton = document.querySelector("#delete-blog");
 // deletes a blog post
 const deleteBlog = async () => {
   const deleteRoute = document.location.pathname;
-
+  // prompts the user to confirm
   if (confirm(`Are you sure you want to delete this blog?`)) {
     const yeetBlog = await fetch(deleteRoute, {
       method: "DELETE",
