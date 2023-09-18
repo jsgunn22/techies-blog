@@ -25,8 +25,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
     },
   });
 
-  console.log(getMyBlogs);
-
   let myHistory;
 
   if (getMyBlogs) {

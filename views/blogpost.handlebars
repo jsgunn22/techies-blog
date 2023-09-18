@@ -8,10 +8,12 @@
   </div>
   <div class="card-body">
     <p>{{thisBlogPost.blog_description}}</p>
+    {{#if thisUser}}
     <div id="my-blog-actions">
       <a href="/update/{{thisBlogPost.id}}" id="update-blog"><h4>Update Blog</h4></a>
       <a href="" id="delete-blog"><h4>Delete Blog</h4></a>
     </div>
+    {{/if}}
   </div>
 </div>
 {{#each thisBlogPost.comments as |comment|}}
@@ -30,4 +32,6 @@
     <button id="save-comment">Submit Comment</button>
   </div>
 </div>
+    {{#if thisUser}}
 <script src="/js/blogpost.js"></script>
+    {{/if}}

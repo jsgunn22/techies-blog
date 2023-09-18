@@ -31,6 +31,7 @@ router.get("/:id", withAuth, async (req, res) => {
     res.render("blogpost", {
       thisBlogPost,
       loggedIn: req.session.loggedIn,
+      thisUser: req.session.userId == thisBlogPost.blog_author ? true : false,
     });
   } catch (err) {
     res.status(500).json(err);
