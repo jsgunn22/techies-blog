@@ -55,6 +55,7 @@ router.post("/", async (req, res) => {
 // updates a blog post by id
 router.put("/update/:id", async (req, res) => {
   try {
+    // checks to see if this blog post exists
     const thisBlogPost = BlogPost.findByPk(req.params.id);
 
     if (!thisBlogPost) {
