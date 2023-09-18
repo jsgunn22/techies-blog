@@ -18,7 +18,14 @@ router.get("/", async (req, res) => {
 router.get("/:id", withAuth, async (req, res) => {
   try {
     const getBlogPost = await BlogPost.findByPk(req.params.id, {
-      include: [{ model: Comment, include: { model: User } }, { model: User }],
+      include: [
+        {
+          model: Comment,
+          include: { model: User },
+          order: [["createdAt", "DSC"]],
+        },
+        { model: User },
+      ],
     });
 
     if (!getBlogPost) {
