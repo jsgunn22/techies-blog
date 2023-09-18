@@ -45,6 +45,7 @@ router.get("/update/:id", withAuth, async (req, res) => {
   res.render("update", { thisBlogPost });
 });
 
+// gets the log in page
 router.get("/login", async (req, res) => {
   res.render("login");
 });
