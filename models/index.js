@@ -2,6 +2,7 @@ const BlogPost = require("./BlogPost");
 const Comment = require("./Comment");
 const User = require("./User");
 
+// creates relationships between models
 BlogPost.belongsTo(User, {
   foreignKey: "blog_author",
 });
