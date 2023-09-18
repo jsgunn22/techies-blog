@@ -1,5 +1,4 @@
 const submitButton = document.querySelector("#save-comment");
-const deleteButton = document.querySelector("#delete-blog");
 
 // adds a comment to blog post and renders the page
 const saveComment = async () => {
@@ -26,22 +25,4 @@ const saveComment = async () => {
   }
 };
 
-// deletes a blog post
-const deleteBlog = async () => {
-  const deleteRoute = document.location.pathname;
-
-  if (confirm(`Are you sure you want to delete this blog?`)) {
-    const yeetBlog = await fetch(deleteRoute, {
-      method: "DELETE",
-    });
-
-    if (yeetBlog.ok) {
-      document.location.replace("/dashboard");
-    } else {
-      alert("Failed to delete this blog");
-    }
-  }
-};
-
 submitButton.addEventListener("click", saveComment);
-deleteButton.addEventListener("click", deleteBlog);
