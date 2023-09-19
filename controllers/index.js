@@ -10,10 +10,6 @@ router.get("/", async (req, res) => {
 
   const blogPosts = getAllBlogPosts.map((blog) => blog.get({ plain: true }));
 
-  let test = blogPosts.length == 0 ? false : true;
-
-  console.log(test);
-
   res.render("home", {
     blogPosts,
     loggedIn: req.session.loggedIn,
